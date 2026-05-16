@@ -1,15 +1,27 @@
 <?php
-include "db.php";
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$department = $_POST['department'];
-$semester = $_POST['semester'];
+include 'db.php';
 
-$sql = "INSERT INTO students(name,email,department,semester)
-VALUES('$name','$email','$department','$semester')";
+$name       = $_POST['name'];
+$email      = $_POST['email'];
+$deprement  = $_POST['deprement'];
+$semestet   = $_POST['semestet'];
 
-$result = $conn->query($sql);
+$sql = "INSERT INTO studentdata1(name,email,deprement,semestet)
+VALUES('$name','$email','$deprement','$semestet')";
 
-echo json_encode(["success" => true]);
+$result = mysqli_query($conn,$sql);
+
+if($result){
+    echo json_encode([
+        "status" => "success",
+        "message" => "Student Added"
+    ]);
+}else{
+    echo json_encode([
+        "status" => "error",
+        "message" => "Insert Failed"
+    ]);
+}
+
 ?>
