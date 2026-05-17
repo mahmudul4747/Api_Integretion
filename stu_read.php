@@ -1,14 +1,17 @@
 <?php
-include "db.php";
 
-$sql = "SELECT * FROM students";
-$result = $conn->query($sql);
+include 'db.php';
+
+$sql = "SELECT * FROM studentdata1";
+
+$result = mysqli_query($conn,$sql);
 
 $data = [];
 
-while($row = $result->fetch_assoc()){
+while($row = mysqli_fetch_assoc($result)){
     $data[] = $row;
 }
 
 echo json_encode($data);
+
 ?>

@@ -1,20 +1,33 @@
 <?php
-include "db.php";
 
-$id = $_POST['id'];
-$name = $_POST['name'];
-$email = $_POST['email'];
-$department = $_POST['department'];
-$semester = $_POST['semester'];
+include 'db.php';
 
-$sql = "UPDATE students SET 
+$id         = $_POST['id'];
+$name       = $_POST['name'];
+$email      = $_POST['email'];
+$deprement  = $_POST['deprement'];
+$semestet   = $_POST['semestet'];
+
+$sql = "UPDATE studentdata1 
+SET 
 name='$name',
 email='$email',
-department='$department',
-semester='$semester'
-WHERE id=$id";
+deprement='$deprement',
+semestet='$semestet'
+WHERE id='$id'";
 
-$conn->query($sql);
+$result = mysqli_query($conn,$sql);
 
-echo json_encode(["success"=>true]);
+if($result){
+    echo json_encode([
+        "status" => "success",
+        "message" => "Student Updated"
+    ]);
+}else{
+    echo json_encode([
+        "status" => "error",
+        "message" => "Update Failed"
+    ]);
+}
+
 ?>
