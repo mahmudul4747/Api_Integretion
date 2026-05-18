@@ -4,6 +4,7 @@ include 'db.php';
 
 $id = $_POST['id'];
 
+echo "ID: " . $id;
 $sql = "DELETE FROM studentdata1 WHERE id='$id'";
 
 $result = mysqli_query($conn,$sql);
